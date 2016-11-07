@@ -3,6 +3,8 @@ VENV='.venv'
 
 source $VENV/bin/activate
 
+rm -rf output
+
 sphinx-build -a -E -b slides source output
 
 find output -name '*.html' -exec sed -i 's/_static/static/g' {} \;
