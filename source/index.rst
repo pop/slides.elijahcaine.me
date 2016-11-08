@@ -14,6 +14,7 @@ slides.elijahcaine.me
 :ref:`how-to-git_seagl_2016`
 ----------------------------
 
+
 :ref:`holy-wars_osu-lug_2014`
 -----------------------------
 

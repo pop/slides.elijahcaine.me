@@ -19,8 +19,7 @@ How To Git
         high-level operations and full access to internals.
 
 
-``git init``
-------------
+``git init`` ------------
 
 .. code::
 
@@ -173,7 +172,8 @@ How To Git
            [...]
 
     DESCRIPTION
-           Manage the set of repositories ("remotes") whose branches you track.
+           Manage the set of repositories ("remotes") whose branches
+           you track.
 
 
 ``git fetch``
@@ -219,6 +219,65 @@ How To Git
         remains on the current branch.
 
 
+``git branch``
+--------------
+
+.. code::
+
+    NAME
+        git-branch - List, create, or delete branches
+
+    SYNOPSIS
+        git branch [--color[=<when>] | --no-color] [-r | -a] [--list]
+                   [-v [--abbrev=<length> | --no-abbrev]]
+                   [--column[=<options>] | --no-column] [(--merged |
+                   --no-merged | --contains) [<commit>]]
+                   [--sort=<key>] [--points-at <object>]
+                   [<pattern>...]
+        git branch [--set-upstream | --track | --no-track] [-l] [-f]
+                   <branchname> [<start-point>]
+        git branch (--set-upstream-to=<upstream> | -u <upstream>)
+                   [<branchname>]
+        git branch --edit-description [<branchname>]
+
+    DESCRIPTION
+       If --list is given, or if there are no non-option arguments,
+       existing branches are listed; the current branch will be
+       highlighted with an asterisk. Option -r causes the
+       remote-tracking branches to be listed, and option -a shows both
+       local and remote branches. If a <pattern> is given, it is used
+       as a shell wildcard to restrict the output to matching
+       branches. If multiple patterns are given, a branch is shown if
+       it matches any of the patterns. Note that when providing a
+       <pattern>, you must use --list; otherwise the command is
+       interpreted as branch creation.
+
+
+``git checkout``
+----------------
+
+.. code::
+
+    NAME
+        git-checkout - Switch branches or restore working tree files
+
+    SYNOPSIS
+        git checkout [-q] [-f] [-m] [<branch>]
+        git checkout [-q] [-f] [-m] --detach [<branch>]
+        git checkout [-q] [-f] [-m] [--detach] <commit>
+        git checkout [-q] [-f] [-m] [[-b|-B|--orphan] <new_branch>]
+                     [<start_point>]
+        git checkout [-f|--ours|--theirs|-m|--conflict=<style>]
+                     [<tree-ish>] [--] <paths>...
+        git checkout [-p|--patch] [<tree-ish>] [--] [<paths>...]
+
+    DESCRIPTION
+        Updates files in the working tree to match the version in the
+        index or the specified tree. If no paths are given, git
+        checkout will also update HEAD to set the specified branch as
+        the current branch.
+
+
 ``git reset``
 -------------
 
@@ -230,13 +289,15 @@ How To Git
     SYNOPSIS
         git reset [-q] [<tree-ish>] [--] <paths>...
         git reset (--patch | -p) [<tree-ish>] [--] [<paths>...]
-        git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [<commit>]
+        git reset [--soft | --mixed [-N] | --hard | --merge | --keep]
+                  [-q] [<commit>]
 
     DESCRIPTION
-        In the first and second form, copy entries from <tree-ish> to the
-        index. In the third form, set the current branch head (HEAD) to
-        <commit>, optionally modifying index and working tree to match. The
-        <tree-ish>/<commit> defaults to HEAD in all forms.
+        In the first and second form, copy entries from <tree-ish> to
+        the index. In the third form, set the current branch head
+        (HEAD) to <commit>, optionally modifying index and working
+        tree to match. The <tree-ish>/<commit> defaults to HEAD in all
+        forms.
 
 
 ``git rm``
