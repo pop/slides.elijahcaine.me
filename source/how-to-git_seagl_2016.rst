@@ -18,8 +18,16 @@ How To Git
         with an unusually rich command set that provides both
         high-level operations and full access to internals.
 
+Rundown
+-------
 
-``git init`` ------------
+.. image:: /static/how-to-git_seagl_2016/git-dataflow.png
+    :align: center
+    :alt: git dataflow diagram
+
+
+``git init``
+------------
 
 .. code::
 
@@ -309,19 +317,21 @@ How To Git
         git-rm - Remove files from the working tree and from the index
 
     SYNOPSIS
-        git rm [-f | --force] [-n] [-r] [--cached] [--ignore-unmatch] [--quiet]
-               [--] <file>...
+        git rm [-f | --force] [-n] [-r] [--cached] [--ignore-unmatch]
+        [--quiet] [--] <file>...
 
     DESCRIPTION
-        Remove files from the index, or from the working tree and the index.
-        git rm will not remove a file from just your working directory.  (There
-        is no option to remove a file only from the working tree and yet keep
-        it in the index; use /bin/rm if you want to do that.) The files being
-        removed have to be identical to the tip of the branch, and no updates
-        to their contents can be staged in the index, though that default
-        behavior can be overridden with the -f option. When --cached is given,
-        the staged content has to match either the tip of the branch or the
-        file on disk, allowing the file to be removed from just the index.
+        Remove files from the index, or from the working tree and the
+        index.  git rm will not remove a file from just your working
+        directory.  (There is no option to remove a file only from the
+        working tree and yet keep it in the index; use /bin/rm if you
+        want to do that.) The files being removed have to be identical
+        to the tip of the branch, and no updates to their contents can
+        be staged in the index, though that default behavior can be
+        overridden with the -f option. When --cached is given, the
+        staged content has to match either the tip of the branch or
+        the file on disk, allowing the file to be removed from just
+        the index.
 
 
 ``git grep``
@@ -333,18 +343,20 @@ How To Git
         git-grep - Print lines matching a pattern
 
     SYNOPSIS
-        git grep [-a | --text] [-I] [--textconv] [-i | --ignore-case] [-w | --word-regexp]
+        git grep [-a | --text] [-I] [--textconv] [-i | --ignore-case]
+                   [-w | --word-regexp]
                  [-v | --invert-match] [-h|-H] [--full-name]
                  [-f <file>] [-e] <pattern>
-                 [ [--[no-]exclude-standard] [--cached | --no-index | --untracked] | <tree>...]
+                 [ [--[no-]exclude-standard] [--cached | --no-index |
+                   --untracked] | <tree>...]
                  [--] [<pathspec>...]
 
     DESCRIPTION
-        Look for specified patterns in the tracked files in the work tree,
-        blobs registered in the index file, or blobs in given tree objects.
-        Patterns are lists of one or more search expressions separated by
-        newline characters. An empty string as search expression matches all
-        lines.
+        Look for specified patterns in the tracked files in the work
+        tree, blobs registered in the index file, or blobs in given
+        tree objects.  Patterns are lists of one or more search
+        expressions separated by newline characters. An empty string
+        as search expression matches all lines.
 
 
 ``git mv``
@@ -362,7 +374,8 @@ How To Git
            Move or rename a file, directory or symlink.
 
                git mv [-v] [-f] [-n] [-k] <source> <destination>
-               git mv [-v] [-f] [-n] [-k] <source> ... <destination directory>
+               git mv [-v] [-f] [-n] [-k] <source> ... <destination
+                 directory>
 
 
 ``.gitginore``
@@ -377,9 +390,10 @@ How To Git
         $HOME/.config/git/ignore, $GIT_DIR/info/exclude, .gitignore
 
     DESCRIPTION
-        A gitignore file specifies intentionally untracked files that Git
-        should ignore. Files already tracked by Git are not affected; see
-        the NOTES below for details.
+        A gitignore file specifies intentionally untracked files that
+        Git should ignore. Files already tracked by Git are not
+        affected; see the NOTES below for details.
+
 
 ``HEAD``
 --------
@@ -388,3 +402,14 @@ How To Git
 
      HEAD
         indicates the head of the current branch.
+
+
+Reference
+---------
+
+- `git-scm.com`_: Tutorials, docs, resources. Everything ``git``.
+
+- `GitHub`_ also has some great tutorials.
+
+.. _git-scm.com: https://git-scm.com/
+.. _GitHub: https://help.github.com/
