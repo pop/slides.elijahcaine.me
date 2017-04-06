@@ -7,8 +7,8 @@ rm -rf output
 
 sphinx-build -a -E -b slides source output
 
-find output -name '*.html' -exec sed -i 's/_static/static/g' {} \;
-find output -name '*.html' -exec sed -i 's/_images/images/g' {} \;
+find output -name '*.html' | xargs -n1 sed -i '' -E 's/_static/static/g';
+find output -name '*.html' | xargs -n1 sed -i '' -E 's/_images/images/g';
 
 mv output/_static output/static
 mv output/_images output/images

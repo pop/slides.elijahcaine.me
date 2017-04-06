@@ -51,3 +51,5 @@ slides.elijahcaine.me
 ----------------------------------
 
 
+:ref:`intro-to-kubernetes_beaver-barcamp_2017`
+----------------------------------------------
