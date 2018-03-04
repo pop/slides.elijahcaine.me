@@ -10,6 +10,11 @@
 slides.elijahcaine.me
 =====================
 
+:ref:`crypto_scale_2018`
+------------------------
+
+:ref:`intro-to-kubernetes_beaver-barcamp_2017`
+----------------------------------------------
 
 :ref:`how-to-git_seagl_2016`
 ----------------------------
@@ -49,7 +54,3 @@ slides.elijahcaine.me
 
 :ref:`history-of-man_osu-lug_2015`
 ----------------------------------
-
-
-:ref:`intro-to-kubernetes_beaver-barcamp_2017`
-----------------------------------------------
