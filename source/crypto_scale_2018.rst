@@ -51,19 +51,19 @@ Roadmap
 Diffie Hellman Key Exchange
 ---------------------------
 
-| 1. Alice and Bob publicly agree on a mod (p) and a base (g).
-| 2. Alice and Bob both choose secret integers (a and b).
-| 3. Alice sends Bob g\ :sup:`a` (mod p) (we call it A).
-|    Bob sends Alice g\ :sup:`b` (mod p) (we call it B).
-| 4. Alice computes B\ :sup:`a` (mod p).
-|    Bob computes A\ :sup:`b` (mod p).
-|    These are equivalent (mod p).
-|    This is Alice and Bob's shared secret.
+    A protocol for exchanging public keys over an insecure channel.
 
+.. nextslide::
+
+1. Alice and Bob publicly agree on a mod (p) and a base (g).
+2. Alice and Bob both choose secret integers (a and b).
+3. Alice sends Bob g\ :sup:`a` (mod p) (we call it A).  Bob sends Alice g\ :sup:`b` (mod p) (we call it B).
+4. Alice computes B\ :sup:`a` (mod p).  Bob computes A\ :sup:`b` (mod p).  These are equivalent (mod p).  This is Alice and Bob's shared secret.
 
 A\ :sup:`b` = (g\ :sup:`a`)\ :sup:`b` = (g\ :sup:`b`)\ :sup:`a` = B\ :sup:`a` (mod p)
 
 *Computing 'a' given 'A' is very difficult when 'a' is large*
+
 
 .. #############################################################################
 
@@ -133,10 +133,25 @@ Why we care about ECC
 **[...] breaking a 228-bit elliptic curve key requires enough energy to boil all the water on Earth.**
 
 
+In the wild
+~~~~~~~~~~~
+
+Check your TLS Certs for ``_ECDHE_``
+
+.. code::
+
+    Technical Details
+      Connection Encrypted (TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, 128 bit keys, TLS 1.2)
+
+
 .. #############################################################################
 
 Hash Functions
 --------------
+
+    A function that takes arbitrary size input and returns unique constant size output.
+
+.. nextslide::
 
 .. code::
 
@@ -178,6 +193,25 @@ Attempts to secure Hash Functions
 
       H(H(H(...H("SALTqwerty")...))): b2bb8650b7
 
+
+In the wild
+~~~~~~~~~~~
+
+Cryptographic Hash Functions:
+
+========== ========
+Algorithm  Secure?
+========== ========
+MD5        No
+SHA-1      No
+SHA-256    No-ish
+SHA-512    Yes-ish
+SHA-3      Yes
+========== ========
+
+.. note::
+
+    Fun Fact: The SHA family of hash functions were developed by the NSA!
 
 .. #############################################################################
 
@@ -223,10 +257,19 @@ Memory Hard:
     ASIC Memory Hard Hash Compute Time: 20+ cycles (sequential)
     EC2 Memory Hard Hash Compute Time: 20 cycles
 
+In the wild
+~~~~~~~~~~~
+
+Scrypt
+
 .. #############################################################################
 
 Secure multi-party computation
 ------------------------------
+
+    Evaluation of a program without knowledge of it's inputs.
+
+.. nextslide::
 
 *The Millionare Problem*
 
@@ -244,10 +287,6 @@ Garbled Circuits
 
 .. image:: /static/garbled-circuit.jpg
     :align: center
-
-.. note::
-
-    Next we are goig to talk about an implementation of Secure MPC called Garbled Circits.
 
 
 Garbled Circuits defined
@@ -351,7 +390,21 @@ Why we care about GCs
     Good question.
 
 .. #############################################################################
+
+Why it all matters
+~~~~~~~~~~~~~~~~~~
+
+.. image:: /static/batman.gif
+    :align: center
+    :target: https://tenor.com/view/batman-gif-4575661
+
+.. note::
+
+    This matters for a few reasons:
+
+    THESIS THESIS THESIS???
  
+.. #############################################################################
 
 Further Reading
 ---------------
