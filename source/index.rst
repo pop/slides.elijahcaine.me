@@ -4,14 +4,17 @@
     :glob:
     :hidden:
 
+    */*
     *
 
 
 slides.elijahcaine.me
 =====================
 
-:ref:`crypto_scale_2018`
-------------------------
+**Latest:** :ref:`Crypto: Practical Math <crypto>`
+
+:ref:`crypto`
+-------------
 
 :ref:`intro-to-kubernetes_beaver-barcamp_2017`
 ----------------------------------------------

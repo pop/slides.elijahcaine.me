@@ -1,12 +1,15 @@
-.. _crypto_scale_2018:
 
 Crypto
 ======
 
 *Practical Math*
 
-Follow along: http://slides.elijahcaine.me/crypto_scale_2018.html
+| Follow along!
+| http://slides.elijahcaine.me/crypto
 
+.. TODO::
+
+    - Better 2P example
 
 .. #############################################################################
 
@@ -80,17 +83,6 @@ ECC Defined
     Public Key Cryprography which uses special properties of Elliptic Curves to create shared secrets.
 
 
-DHKE in ECC
-~~~~~~~~~~~
-
-1. Alice and Bob agree on E(F\ :sub:`p`\ ): an Elliptic Curve over a finite field and P A public point P on E(F\ :sub:`p`\ ).
-2. Alice chooses a secret integer a and Bob choose secret integers b .
-3. Alice computes Q\ :sub:`a` = a P and Bob computes Q\ :sub:`b` = b P. These are the "Public Keys"
-4. Alice sends Bob her public key, Bob send Alice his public key.
-5. Alice computes a Q\ :sub:`b`\ , Bob computes b Q\ :sub:`a`\ .
-6. The shared secret is a Q\ :sub:`b` = a (b P) = b (a P) = b Q\ :sub:`a`.
-
-
 "Addition"
 ~~~~~~~~~~
 
@@ -109,6 +101,11 @@ DHKE in ECC
 "Multiplication"
 ~~~~~~~~~~~~~~~~
 
+.. image:: /static/ecc-4.png
+    :align: center
+
+.. nextslide::
+
 The "Double and Add" algorithm:
 
 1. Take a point P ∈ E(Fp) and an integer n ≥ 1.
@@ -117,6 +114,17 @@ The "Double and Add" algorithm:
 
    4. If n ≡ 1 (mod 2), set R = R + Q
    5. Set Q = 2Q and n = floor(n/2).
+
+
+DHKE in ECC
+~~~~~~~~~~~
+
+1. Alice and Bob agree on E(F\ :sub:`p`\ ): an Elliptic Curve over a finite field and P A public point P on E(F\ :sub:`p`\ ).
+2. Alice chooses a secret integer a and Bob choose secret integers b .
+3. Alice computes Q\ :sub:`a` = a P and Bob computes Q\ :sub:`b` = b P. These are the "Public Keys"
+4. Alice sends Bob her public key, Bob send Alice his public key.
+5. Alice computes a Q\ :sub:`b`\ , Bob computes b Q\ :sub:`a`\ .
+6. The shared secret is a Q\ :sub:`b` = a (b P) = b (a P) = b Q\ :sub:`a`.
 
 
 Why we care about ECC
@@ -409,15 +417,22 @@ Why it all matters
 Further Reading
 ---------------
 
-My `Crypto Class Course Syllabus`_
+| Crypto Course blog
+| http://elijahcaine.me/tag/crytpo.html
 
-`A (relatively easy to understand) primer on elliptic curve cryptography`_ Nick Sullivan on Ars Technica
+| `A primer on elliptic curve cryptography`_
+| (Nick Sullivan, Ars Technica)
+| https://goo.gl/zaRGBo
 
-`What exactly is a "garbled circuit"?`_ mikero on crypto.stackexchange.com
+| `What exactly is a "garbled circuit"?`_
+| (mikero, crypto.stackexchange.com)
+| https://crypto.stackexchange.com/questions/37991#37993
 
-`Memory Hard Functions and Password Hashings`_ Jeremiah M. Blocki at CERIAS Symposium
+| `Memory Hard Functions and Password Hashings`_
+| (Jeremiah M. Blocki, CERIAS Symposium)
+| https://youtu.be/9yX4v89m5oo
 
 .. _Crypto Class Course Syllabus: http://elijahcaine.me/crypto/independent-crypto-course-syllabus/
-.. _A (relatively easy to understand) primer on elliptic curve cryptography: https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/
+.. _A primer on elliptic curve cryptography: https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/
 .. _What exactly is a "garbled circuit"?: https://crypto.stackexchange.com/questions/37991/what-exactly-is-a-garbled-circuit/37993#37993
 .. _Memory Hard Functions and Password Hashings: https://youtu.be/9yX4v89m5oo
