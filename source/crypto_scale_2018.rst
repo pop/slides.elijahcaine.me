@@ -16,16 +16,16 @@ Crypto
 Elijah Caine M. Voigt
 ----------------------
 
-DevOps Engineer at Nordstrom
+- DevOps Engineer at Nordstrom
 
-Recent BS in CS from Oregon State
+- Recent BS in CS from Oregon State
 
-https://elijahcaine.me
+- Blog https://elijahcaine.me
 
-https://github.com/pop
+- Twitter @pastyWhiteNoise
 
 .. image:: /static/fashion.gif
-    :align: center
+    :align: right
     :target: http://www.reactiongifs.com/r/fash.gif
     :width: 50%
 
@@ -75,6 +75,7 @@ Elliptic Curve Crytography
 
 .. image:: /static/elliptic-curve-cryptography-1.hires.png
     :align: center
+    :width: 100%
 
 
 ECC Defined
@@ -88,6 +89,7 @@ ECC Defined
 
 .. image:: /static/ecc-3.png
     :align: center
+    :width: 100%
 
 .. nextslide::
 
@@ -103,6 +105,7 @@ ECC Defined
 
 .. image:: /static/ecc-4.png
     :align: center
+    :width: 100%
 
 .. nextslide::
 
@@ -228,6 +231,7 @@ Memory Hard Functions
 
 .. image:: /static/dag-animated.gif
     :align: center
+    :width: 100%
 
 
 MHFs Defined
@@ -241,11 +245,13 @@ Directed Acyclic Graphs
 
 .. image:: /static/DAG.gif
     :align: center
+    :width: 100%
 
 .. nextslide::
 
 .. image:: /static/dag-animated.gif
     :align: center
+    :width: 100%
 
 
 Why we care about MHFs
@@ -295,6 +301,7 @@ Garbled Circuits
 
 .. image:: /static/garbled-circuit.jpg
     :align: center
+    :width: 100%
 
 
 Garbled Circuits defined
@@ -404,6 +411,7 @@ Why it all matters
 
 .. image:: /static/batman.gif
     :align: center
+    :width: 100%
     :target: https://tenor.com/view/batman-gif-4575661
 
 .. note::

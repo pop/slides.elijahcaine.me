@@ -51,8 +51,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Elijah C. Voigt: Slides'
-copyright = '2013, 2014, 2015, 2016, Elijah Voigt'
+project = 'Elijah Caine M. Voigt: Slides'
+copyright = '2013, 2014, 2015, 2016, 2017, 2018 Elijah Caine M. Voigt'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
