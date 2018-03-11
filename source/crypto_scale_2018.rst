@@ -281,7 +281,7 @@ Scrypt
 Secure multi-party computation
 ------------------------------
 
-    Evaluation of a program without knowledge of it's inputs.
+    Evaluation of a program without knowledge of it's inputs or contents.
 
 .. nextslide::
 
@@ -385,7 +385,7 @@ Bob's input
 
 6. Bob uses oblivious transfer to compute is input ``KyB``.
 
-7. Bob can run the circuit. ``decrypt_or( KxA , KyB )`` outputs 0 or 1.
+7. Bob can run the circuit. ``garbled_OR( KxA , KyB )`` outputs 0 or 1.
 
 .. note::
 
@@ -399,6 +399,8 @@ Bob's input
 
 Why we care about GCs
 ~~~~~~~~~~~~~~~~~~~~~
+
+Contact sharing.
 
 .. note::
 
