@@ -4,7 +4,7 @@ VENV='.venv'
 git stash
 rm -rf output/
 
-eval local-build.sh
+./local-build.sh
 
 rm -rf /tmp/build_output
 mv output /tmp/build_output
