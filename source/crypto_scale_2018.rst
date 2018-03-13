@@ -81,7 +81,7 @@ Elliptic Curve Crytography
 ECC Defined
 ~~~~~~~~~~~
 
-    Public Key Cryprography which uses special properties of Elliptic Curves to create shared secrets.
+    Public Key Cryptography which uses special properties of Elliptic Curves to create shared secrets.
 
 
 "Addition"
