@@ -39,6 +39,7 @@ jobs:
         pwd
         ls
         poetry run ./build.sh
+        mv output/static/CNAME output/CNAME
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
