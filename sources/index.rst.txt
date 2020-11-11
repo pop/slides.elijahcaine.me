@@ -11,13 +11,19 @@
 slides.elijahcaine.me
 =====================
 
-**Latest:** :ref:`Crypto: Practical Math <crypto>`
+**Latest:** :ref:`Let's Make Games with Rust <seagl-2020>`
+
+:ref:`seagl-2020`
+-----------------
+
 
 :ref:`crypto`
 -------------
 
+
 :ref:`intro-to-kubernetes_beaver-barcamp_2017`
 ----------------------------------------------
+
 
 :ref:`how-to-git_seagl_2016`
 ----------------------------
