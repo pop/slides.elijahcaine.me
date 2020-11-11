@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Blender: Lights, Camera, Action! &mdash; Elijah Caine M. Voigt: Slides 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="static/styles.css" type="text/css" />
+    <link rel="stylesheet" href="static/single.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <script type="text/javascript" src="static/common.js"></script>
+    
+    <script type="text/javascript" src="static/slides.js"></script>
+    <script type="text/javascript" src="static/sync.js"></script>
+    <script type="text/javascript" src="static/controller.js"></script>
+    <script type="text/javascript" src="static/init.js"></script>
+    
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Elijah Caine M. Voigt: Slides 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="The Turing Machine" href="turing_osu_2013.html" />
+    <link rel="prev" title="Orchestrate your Containers in the Cloud with Kubernetes" href="intro-to-kubernetes_beaver-barcamp_2017.html" /> 
+  </head>
+  <body>
+
+<section
+   id="slide_container"
+   class='slides layout-regular'>
+
+
+  
+<article class="slide level-1" id="blender-lights-camera-action">
+
+<h1>Blender: Lights, Camera, Action!</h1>
+
+<p>(in under 60 mintues)</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="what-is-it-how-do-i-use-it-what-do-all-of-these-buttons-do">
+
+<h2>What is it, How do I use it, What do all of these buttons do???</h2>
+
+<p>Blender is a 3D Modeling, Animation, and Media Production Suite. It can be used
+to make films, images, games, 3D Printable objects, and much more.</p>
+<p>It's also Free and Open Source! (GPL!)</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="id2">
+
+<h2>What is it, How do I use it, What do all of these buttons do???</h2>
+
+<p><strong>Who am I?</strong></p>
+<p><em>Elijah Voigt</em> (<em>pop</em> on irc.freenode.net)</p>
+<p>OSU Open Source Lab Student Dev</p>
+<div class="figure align-center">
+<img alt="images/osl.png" src="images/osl.png" />
+</div>
+<p>OSU Linux Users Group President</p>
+<div class="figure align-center">
+<img alt="images/blender_plain.png" src="images/blender_plain.png" />
+</div>
+<p>Blender user since ~2008</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="credentials">
+
+<h2>Credentials</h2>
+
+<p>I am not a professional. I don't get paid to do this. I don't contribute to
+the code, I just use the heck out of it and have been for a long dang time.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/blender-273.jpg"><img alt="images/blender-273.jpg" src="images/blender-273.jpg" style="width: 449.25px; height: 288.75px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="a-thing-i-did">
+
+<h2>A Thing I Did</h2>
+
+<div class="figure">
+<img alt="images/ex2.png" src="images/ex2.png" />
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="another-thing-i-did">
+
+<h2>Another Thing I Did</h2>
+
+<div class="figure">
+<img alt="images/ex3.png" src="images/ex3.png" />
+</div>
+<p>More things I do can be found my website (links at the end)</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="what-will-be-covered">
+
+<h2>What <em>Will</em> be Covered</h2>
+
+<blockquote>
+<div><ul class="simple">
+<li>Polygonal Modeling</li>
+<li>Materials</li>
+<li>Modifiers</li>
+<li><dl class="first docutils">
+<dt>Animation</dt>
+<dd><ul class="first last">
+<li>The Basics</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+
+
+
+
+</article>
+<article class="slide level-2" id="what-won-t-be-covered">
+
+<h2>What Won't be Covered</h2>
+
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Animation</dt>
+<dd><ul class="first last">
+<li>Rigging</li>
+<li>Bezier Curves</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Game Engine</li>
+<li>Python Scripting in Blender</li>
+<li>Textures</li>
+<li>Sculpting</li>
+<li>Physics Engine</li>
+<li>Nodes</li>
+<li>Compositing</li>
+</ul>
+</div></blockquote>
+
+
+
+
+</article>
+<article class="slide level-2" id="the-demo">
+
+<h2>The Demo!*</h2>
+
+<blockquote>
+<div><p>* With some slides</p>
+<p>Don't forget to ask questions!</p>
+</div></blockquote>
+<div class="figure align-center">
+<img alt="images/demo_results.png" src="images/demo_results.png" />
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="let-s-get-started">
+
+<h2>Let's Get Started</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/default_3dview_sm.png"><img alt="images/default_3dview_sm.png" src="images/default_3dview_sm.png" style="width: 329.5px; height: 218.5px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="object">
+
+<h2>Object</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/wireframe_object_sm.png"><img alt="images/wireframe_object_sm.png" src="images/wireframe_object_sm.png" style="width: 329.0px; height: 218.0px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="objects">
+
+<h2>Objects</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/objs.png"><img alt="images/objs.png" src="images/objs.png" style="width: 714.0px; height: 379.0px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="vertex">
+
+<h2>Vertex</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/vertex_sm.png"><img alt="images/vertex_sm.png" src="images/vertex_sm.png" style="width: 329.5px; height: 218.5px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="edge">
+
+<h2>Edge</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/edge_sm.png"><img alt="images/edge_sm.png" src="images/edge_sm.png" style="width: 329.5px; height: 219.0px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="face">
+
+<h2>Face</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/face_sm.png"><img alt="images/face_sm.png" src="images/face_sm.png" style="width: 330.0px; height: 218.5px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="id1">
+
+<h2>Objects</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/monkey.png"><img alt="images/monkey.png" src="images/monkey.png" style="width: 329.0px; height: 219.0px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="manipulators">
+
+<h2>Manipulators</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/size_rotate_move_sm.png"><img alt="images/size_rotate_move_sm.png" src="images/size_rotate_move_sm.png" style="width: 328.0px; height: 217.5px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="modifiers">
+
+<h2>Modifiers</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/modifier_example_sm.png"><img alt="images/modifier_example_sm.png" src="images/modifier_example_sm.png" style="width: 329.0px; height: 218.0px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="animation">
+
+<h2>Animation</h2>
+
+<div class="figure align-center">
+<img alt="images/anim_point.png" src="images/anim_point.png" />
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="rendering">
+
+<h2>Rendering</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/default_rendered_sm.png"><img alt="images/default_rendered_sm.png" src="images/default_rendered_sm.png" style="width: 329.0px; height: 218.0px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="materials-unrendered">
+
+<h2>Materials | Unrendered</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/unrendered_material_sm.png"><img alt="images/unrendered_material_sm.png" src="images/unrendered_material_sm.png" style="width: 328.0px; height: 218.5px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="materials-rendered">
+
+<h2>Materials | Rendered</h2>
+
+<div class="figure align-center">
+<a class="reference internal image-reference" href="images/rendered_material_sm.png"><img alt="images/rendered_material_sm.png" src="images/rendered_material_sm.png" style="width: 328.5px; height: 217.5px;" /></a>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="further-reading-links">
+
+<h2>Further Reading &amp; Links</h2>
+
+<ul class="simple">
+<li><a class="reference external" href="http://blender.org">http://blender.org</a></li>
+<li><a class="reference external" href="http://wiki.blender.org">http://wiki.blender.org</a></li>
+<li><a class="reference external" href="http://cgcookie.com/blender">http://cgcookie.com/blender</a></li>
+<li><a class="reference external" href="http://blenderartists.org/forum/">http://blenderartists.org/forum/</a></li>
+<li><a class="reference external" href="http://www.blenderguru.com/">http://www.blenderguru.com/</a></li>
+<li><a class="reference external" href="http://slides.elijahcaine.me/scale2015">http://slides.elijahcaine.me/scale2015</a></li>
+<li><a class="reference external" href="http://elijahcaine.me">http://elijahcaine.me</a></li>
+</ul>
+<p>These slides are available under Creative Commons on Github. Share, Fork,
+Enjoy!</p>
+
+
+
+
+</article>
+
+</section>
+
+<section id="slide_notes">
+
+</section>
+
+  </body>
+</html>

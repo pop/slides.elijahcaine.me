@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Crypto &mdash; Elijah Caine M. Voigt: Slides 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../static/styles.css" type="text/css" />
+    <link rel="stylesheet" href="../static/single.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    
+    
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/common.js"></script>
+    
+    <script type="text/javascript" src="../static/slides.js"></script>
+    <script type="text/javascript" src="../static/sync.js"></script>
+    <script type="text/javascript" src="../static/controller.js"></script>
+    <script type="text/javascript" src="../static/init.js"></script>
+    
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Elijah Caine M. Voigt: Slides 0.1.0 documentation" href="../index.html" />
+    <link rel="next" title="Crypto" href="../crypto_scale_2018.html" />
+    <link rel="prev" title="slides.elijahcaine.me" href="../index.html" /> 
+  </head>
+  <body>
+
+<section
+   id="slide_container"
+   class='slides layout-regular'>
+
+
+  
+<article class="slide level-1" id="crypto">
+
+<h1>Crypto</h1>
+
+<p><em>Practical Math</em></p>
+<div class="line-block">
+<div class="line">Follow along!</div>
+<div class="line"><a class="reference external" href="http://slides.elijahcaine.me/crypto">http://slides.elijahcaine.me/crypto</a></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="elijah-caine-m-voigt">
+
+<h2>Elijah Caine M. Voigt</h2>
+
+<ul class="simple">
+<li>DevOps Engineer at Nordstrom</li>
+<li>Recent BS in CS from Oregon State</li>
+<li>Blog <a class="reference external" href="https://elijahcaine.me">https://elijahcaine.me</a></li>
+<li>Twitter &#64;pastyWhiteNoise</li>
+</ul>
+<a class="reference external image-reference" href="http://www.reactiongifs.com/r/fash.gif"><img alt="../images/fashion.gif" class="align-right" src="../images/fashion.gif" style="width: 50%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-2" id="roadmap">
+
+<h2>Roadmap</h2>
+
+<ol class="arabic simple">
+<li>Diffie Hellman Key Exchange</li>
+<li>Elliptic Curve Crypto</li>
+<li>Hash Functions</li>
+<li>Memory Hard Functions</li>
+<li>Secure multi-party computations</li>
+<li>Garbled Circuits</li>
+</ol>
+
+
+
+
+</article>
+<article class="slide level-2" id="diffie-hellman-key-exchange">
+
+<h2>Diffie Hellman Key Exchange</h2>
+
+<q>
+A protocol for exchanging public keys over an insecure channel.</q>
+
+
+
+
+</article>
+<article class="slide level-2" id="id4">
+
+<h2>Diffie Hellman Key Exchange</h2>
+
+<ol class="arabic simple">
+<li>Alice and Bob publicly agree on a mod (p) and a base (g).</li>
+<li>Alice and Bob both choose secret integers (a and b).</li>
+<li>Alice sends Bob g<sup>a</sup> (mod p) (we call it A).  Bob sends Alice g<sup>b</sup> (mod p) (we call it B).</li>
+<li>Alice computes B<sup>a</sup> (mod p).  Bob computes A<sup>b</sup> (mod p).  These are equivalent (mod p).  This is Alice and Bob's shared secret.</li>
+</ol>
+<p>A<sup>b</sup> = (g<sup>a</sup>)<sup>b</sup> = (g<sup>b</sup>)<sup>a</sup> = B<sup>a</sup> (mod p)</p>
+<p><em>Computing 'a' given 'A' is very difficult when 'a' is large</em></p>
+
+
+
+
+</article>
+<article class="slide level-2" id="elliptic-curve-crytography">
+
+<h2>Elliptic Curve Crytography</h2>
+
+<a class="reference internal image-reference" href="../images/elliptic-curve-cryptography-1.hires.png"><img alt="../images/elliptic-curve-cryptography-1.hires.png" class="align-center" src="../images/elliptic-curve-cryptography-1.hires.png" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="ecc-defined">
+
+<h3>ECC Defined</h3>
+
+<q>
+Public Key Cryptography which uses special properties of Elliptic Curves to create shared secrets.</q>
+
+
+
+
+</article>
+<article class="slide level-3" id="addition">
+
+<h3>&quot;Addition&quot;</h3>
+
+<a class="reference internal image-reference" href="../images/ecc-3.png"><img alt="../images/ecc-3.png" class="align-center" src="../images/ecc-3.png" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="id5">
+
+<h3>&quot;Addition&quot;</h3>
+
+<ol class="arabic simple">
+<li>Take two points P and Q on the Elliptic Curve E.</li>
+<li>Draw a line L which passes through these two points.</li>
+<li>L should ultimately pass through three points: P, Q, and R.</li>
+<li>Multiply the Y coordinate of R by -1, this is R'.</li>
+<li>P ⊕ Q = R'.</li>
+</ol>
+
+
+
+
+</article>
+<article class="slide level-3" id="multiplication">
+
+<h3>&quot;Multiplication&quot;</h3>
+
+<a class="reference internal image-reference" href="../images/ecc-4.png"><img alt="../images/ecc-4.png" class="align-center" src="../images/ecc-4.png" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="id6">
+
+<h3>&quot;Multiplication&quot;</h3>
+
+<p>The &quot;Double and Add&quot; algorithm:</p>
+<ol class="arabic simple">
+<li>Take a point P ∈ E(Fp) and an integer n ≥ 1.</li>
+<li>Set Q = P and R = O.</li>
+<li>Loop while n &gt; 0.<ol class="arabic" start="4">
+<li>If n ≡ 1 (mod 2), set R = R + Q</li>
+<li>Set Q = 2Q and n = floor(n/2).</li>
+</ol>
+</li>
+</ol>
+
+
+
+
+</article>
+<article class="slide level-3" id="dhke-in-ecc">
+
+<h3>DHKE in ECC</h3>
+
+<ol class="arabic simple">
+<li>Alice and Bob agree on E(F<sub>p</sub>): an Elliptic Curve over a finite field and P A public point P on E(F<sub>p</sub>).</li>
+<li>Alice chooses a secret integer a and Bob choose secret integers b .</li>
+<li>Alice computes Q<sub>a</sub> = a P and Bob computes Q<sub>b</sub> = b P. These are the &quot;Public Keys&quot;</li>
+<li>Alice sends Bob her public key, Bob send Alice his public key.</li>
+<li>Alice computes a Q<sub>b</sub>, Bob computes b Q<sub>a</sub>.</li>
+<li>The shared secret is a Q<sub>b</sub> = a (b P) = b (a P) = b Q<sub>a</sub>.</li>
+</ol>
+
+
+
+
+</article>
+<article class="slide level-3" id="why-we-care-about-ecc">
+
+<h3>Why we care about ECC</h3>
+
+<p><em>Greater security with less data.</em></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>[...] breaking a 228-bit RSA key requires less energy than boiling a teaspoon of water.</strong></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>[...] breaking a 228-bit elliptic curve key requires enough energy to boil all the water on Earth.</strong></p>
+
+
+
+
+</article>
+<article class="slide level-3" id="in-the-wild">
+
+<h3>In the wild</h3>
+
+<p>Check your TLS Certs for <code class="docutils literal"><span class="pre">_ECDHE_</span></code></p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Technical</span> <span class="n">Details</span>
+  <span class="n">Connection</span> <span class="n">Encrypted</span> <span class="p">(</span><span class="n">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</span><span class="p">,</span> <span class="mi">128</span> <span class="n">bit</span> <span class="n">keys</span><span class="p">,</span> <span class="n">TLS</span> <span class="mf">1.2</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="hash-functions">
+
+<h2>Hash Functions</h2>
+
+<q>
+A function that takes arbitrary size input and returns unique constant size output.</q>
+
+
+
+
+</article>
+<article class="slide level-2" id="id7">
+
+<h2>Hash Functions</h2>
+
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">H</span><span class="p">(</span><span class="s2">&quot;Mary had a little lamb&quot;</span><span class="p">):</span> <span class="mi">8774</span><span class="n">a25d2f</span>
+
+                   <span class="n">H</span><span class="p">(</span><span class="s2">&quot;Pop&quot;</span><span class="p">):</span> <span class="mi">21129</span><span class="n">ffe98</span>
+
+<span class="n">H</span><span class="p">(</span><span class="s2">&quot;Mary had a little lamb&quot;</span><span class="p">):</span> <span class="mi">8774</span><span class="n">a25d2f</span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="reversing-a-hash-function">
+
+<h3>Reversing a Hash Function</h3>
+
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">H</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">):</span> <span class="mi">6</span><span class="n">b3a55e026</span>
+
+  <span class="n">H</span><span class="p">(</span><span class="s2">&quot;123456&quot;</span><span class="p">):</span> <span class="n">e150a1ec81</span>
+
+ <span class="n">H</span><span class="p">(</span><span class="s2">&quot;hunter2&quot;</span><span class="p">):</span> <span class="mi">46</span><span class="n">a9d5bde7</span>
+
+            <span class="o">...</span>
+
+  <span class="n">H</span><span class="p">(</span><span class="s2">&quot;qwerty&quot;</span><span class="p">):</span> <span class="mi">10231785</span><span class="n">cb</span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="attempts-to-secure-hash-functions">
+
+<h3>Attempts to secure Hash Functions</h3>
+
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="o">...</span><span class="n">H</span><span class="p">(</span><span class="s2">&quot;SALTpassword&quot;</span><span class="p">)</span><span class="o">...</span><span class="p">))):</span> <span class="n">c07e32d739</span>
+
+  <span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="o">...</span><span class="n">H</span><span class="p">(</span><span class="s2">&quot;SALT123456&quot;</span><span class="p">)</span><span class="o">...</span><span class="p">))):</span> <span class="n">e0209a9bf0</span>
+
+ <span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="o">...</span><span class="n">H</span><span class="p">(</span><span class="s2">&quot;SALThunter2&quot;</span><span class="p">)</span><span class="o">...</span><span class="p">))):</span> <span class="mi">3</span><span class="n">f02b38713</span>
+
+                               <span class="o">...</span>
+
+  <span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="o">...</span><span class="n">H</span><span class="p">(</span><span class="s2">&quot;SALTqwerty&quot;</span><span class="p">)</span><span class="o">...</span><span class="p">))):</span> <span class="n">b2bb8650b7</span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="id2">
+
+<h3>In the wild</h3>
+
+<p>Cryptographic Hash Functions:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Algorithm</th>
+<th class="head">Secure?</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MD5</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>SHA-1</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td>SHA-256</td>
+<td>No-ish</td>
+</tr>
+<tr class="row-odd"><td>SHA-512</td>
+<td>Yes-ish</td>
+</tr>
+<tr class="row-even"><td>SHA-3</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Fun Fact: The SHA family of hash functions were developed by the NSA!</p>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="memory-hard-functions">
+
+<h2>Memory Hard Functions</h2>
+
+<a class="reference internal image-reference" href="../images/dag-animated.gif"><img alt="../images/dag-animated.gif" class="align-center" src="../images/dag-animated.gif" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="mhfs-defined">
+
+<h3>MHFs Defined</h3>
+
+<q>
+Hashing functions which are difficult to compute in memory-constrained systems.</q>
+
+
+
+
+</article>
+<article class="slide level-3" id="directed-acyclic-graphs">
+
+<h3>Directed Acyclic Graphs</h3>
+
+<a class="reference internal image-reference" href="../images/DAG.gif"><img alt="../images/DAG.gif" class="align-center" src="../images/DAG.gif" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="id8">
+
+<h3>Directed Acyclic Graphs</h3>
+
+<a class="reference internal image-reference" href="../images/dag-animated.gif"><img alt="../images/dag-animated.gif" class="align-center" src="../images/dag-animated.gif" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="why-we-care-about-mhfs">
+
+<h3>Why we care about MHFs</h3>
+
+<p>Before:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">ASIC</span> <span class="n">Hash</span> <span class="n">Function</span> <span class="n">Compute</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">4</span> <span class="n">cycles</span> <span class="p">(</span><span class="n">concurrent</span><span class="p">)</span>
+<span class="n">EC2</span> <span class="n">Hash</span> <span class="n">Function</span> <span class="n">Compute</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">20</span> <span class="n">cycles</span>
+</pre></div>
+</div>
+<p>Memory Hard:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">ASIC</span> <span class="n">Memory</span> <span class="n">Hard</span> <span class="n">Hash</span> <span class="n">Compute</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">20</span><span class="o">+</span> <span class="n">cycles</span> <span class="p">(</span><span class="n">sequential</span><span class="p">)</span>
+<span class="n">EC2</span> <span class="n">Memory</span> <span class="n">Hard</span> <span class="n">Hash</span> <span class="n">Compute</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">20</span> <span class="n">cycles</span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="id3">
+
+<h3>In the wild</h3>
+
+<p>Scrypt</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="secure-multi-party-computation">
+
+<h2>Secure multi-party computation</h2>
+
+<q>
+Evaluation of a program without knowledge of it's inputs or contents.</q>
+
+
+
+
+</article>
+<article class="slide level-2" id="id9">
+
+<h2>Secure multi-party computation</h2>
+
+<p><em>The Millionare Problem</em></p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">F</span> <span class="o">=</span> <span class="n">garbled</span><span class="p">(</span><span class="n">function</span> <span class="n">f</span><span class="p">)</span>
+   <span class="nb">input</span> <span class="n">A</span> <span class="o">=</span> <span class="n">obfuscated</span><span class="p">(</span><span class="nb">input</span> <span class="n">a</span><span class="p">)</span>
+   <span class="nb">input</span> <span class="n">B</span> <span class="o">=</span> <span class="n">obfuscated</span><span class="p">(</span><span class="nb">input</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">F</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="garbled-circuits">
+
+<h2>Garbled Circuits</h2>
+
+<a class="reference internal image-reference" href="../images/garbled-circuit.jpg"><img alt="../images/garbled-circuit.jpg" class="align-center" src="../images/garbled-circuit.jpg" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="garbled-circuits-defined">
+
+<h3>Garbled Circuits defined</h3>
+
+<q>
+An implementation of secure multi-party calculations.</q>
+
+
+
+
+</article>
+<article class="slide level-3" id="how-to-garble">
+
+<h3>How to Garble</h3>
+
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="27%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OR</th>
+<th class="head">0</th>
+<th class="head">1</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>0</strong></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li>Four possible inputs, Four possible outputs.</li>
+<li>Inputs are encrypted ('0' -&gt; 4355a46b19, etc)</li>
+<li>Two keys used to decrypt <em>one gate outputs</em>.</li>
+<li>Seeng inputs (encryption keys) doesn't spoil the values (<code class="docutils literal"><span class="pre">1</span></code> or <code class="docutils literal"><span class="pre">0</span></code>).</li>
+<li>One can run the circuit without knowing the inputs.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Now let's walk through an example where Alice and Bob will garble and evaluate an &quot;OR&quot; gate.</p>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="alice-s-circuit-input">
+
+<h3>Alice's circuit &amp; input</h3>
+
+<ol class="arabic simple">
+<li>Alice generates 4 keys <code class="docutils literal"><span class="pre">Kx0</span></code>, <code class="docutils literal"><span class="pre">Kx1</span></code>, <code class="docutils literal"><span class="pre">Ky0</span></code>, and <code class="docutils literal"><span class="pre">Ky1</span></code>.</li>
+<li>Alice creates four variables corresponding with the four outputs of the OR table:</li>
+</ol>
+<p>Plaintext</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OR</th>
+<th class="head">0</th>
+<th class="head">1</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>0</strong></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Garbled</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="35%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OR</th>
+<th class="head"><code class="docutils literal"><span class="pre">Kx0</span></code></th>
+<th class="head"><code class="docutils literal"><span class="pre">Kx1</span></code></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Ky0</strong></td>
+<td><code class="docutils literal"><span class="pre">B00</span></code></td>
+<td><code class="docutils literal"><span class="pre">B01</span></code></td>
+</tr>
+<tr class="row-odd"><td><strong>Ky1</strong></td>
+<td><code class="docutils literal"><span class="pre">B10</span></code></td>
+<td><code class="docutils literal"><span class="pre">B11</span></code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</article>
+<article class="slide level-3" id="id10">
+
+<h3>Alice's circuit &amp; input</h3>
+
+<ol class="arabic simple" start="3">
+<li>Each box is encrypted with the two keys:</li>
+</ol>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="43%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OR</th>
+<th class="head">Kx0</th>
+<th class="head">Kx1</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Ky0</strong></td>
+<td><code class="docutils literal"><span class="pre">E(</span> <span class="pre">Kx0||Ky0,</span> <span class="pre">B00</span> <span class="pre">)</span></code></td>
+<td><code class="docutils literal"><span class="pre">E(</span> <span class="pre">Kx0||Ky1,</span> <span class="pre">B01</span> <span class="pre">)</span></code></td>
+</tr>
+<tr class="row-odd"><td><strong>Ky1</strong></td>
+<td><code class="docutils literal"><span class="pre">E(</span> <span class="pre">Kx1||Ky0,</span> <span class="pre">B10</span> <span class="pre">)</span></code></td>
+<td><code class="docutils literal"><span class="pre">E(</span> <span class="pre">Kx1||Ky1,</span> <span class="pre">B11</span> <span class="pre">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Which looks like:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OR</th>
+<th class="head"><code class="docutils literal"><span class="pre">f4982f5cfd4</span></code></th>
+<th class="head"><code class="docutils literal"><span class="pre">56198d52cb1</span></code></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">abfff1c5ed8</span></code></td>
+<td><code class="docutils literal"><span class="pre">d9b2aefb1fe</span></code></td>
+<td><code class="docutils literal"><span class="pre">d56f56bb9bb</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">abc7b0fb361</span></code></td>
+<td><code class="docutils literal"><span class="pre">917df3320d7</span></code></td>
+<td><code class="docutils literal"><span class="pre">4f2a86deb5e</span></code></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li>Alice sends the ciphertexts (<code class="docutils literal"><span class="pre">E(</span> <span class="pre">Kx0||ky0,</span> <span class="pre">B00)</span></code>, etc) and her input (<code class="docutils literal"><span class="pre">KxA</span></code>) to Bob.</li>
+</ol>
+
+
+
+
+</article>
+<article class="slide level-3" id="bob-s-input">
+
+<h3>Bob's input</h3>
+
+<ol class="arabic simple" start="5">
+<li>Bob takes Alice's input(s), <code class="docutils literal"><span class="pre">KxA</span></code>.</li>
+<li>Bob uses oblivious transfer to compute is input <code class="docutils literal"><span class="pre">KyB</span></code>.</li>
+<li>Bob can run the circuit. <code class="docutils literal"><span class="pre">garbled_OR(</span> <span class="pre">KxA</span> <span class="pre">,</span> <span class="pre">KyB</span> <span class="pre">)</span></code> outputs 0 or 1.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Bob has enough information to get one of the four possible outputs of the
+circuit, but doesn't know if Alice's input is a 1 or a 0 at each circuit.</p>
+<p class="last">Importantly, while Bob can share the output of the circuit, he should
+<strong>not</strong> share his input.
+That would make using OT (step 6) obtuse.</p>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="why-we-care-about-gcs">
+
+<h3>Why we care about GCs</h3>
+
+<p>Contact sharing.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Good question.</p>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="why-it-all-matters">
+
+<h3>Why it all matters</h3>
+
+<a class="reference external image-reference" href="https://tenor.com/view/batman-gif-4575661"><img alt="../images/batman.gif" class="align-center" src="../images/batman.gif" style="width: 100%;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This matters for a few reasons:</p>
+<p class="last">THESIS THESIS THESIS???</p>
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="further-reading">
+
+<h2>Further Reading</h2>
+
+<div class="line-block">
+<div class="line">Crypto Course blog</div>
+<div class="line"><a class="reference external" href="http://elijahcaine.me/tag/crytpo.html">http://elijahcaine.me/tag/crytpo.html</a></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/">A primer on elliptic curve cryptography</a></div>
+<div class="line">(Nick Sullivan, Ars Technica)</div>
+<div class="line"><a class="reference external" href="https://goo.gl/zaRGBo">https://goo.gl/zaRGBo</a></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://crypto.stackexchange.com/questions/37991/what-exactly-is-a-garbled-circuit/37993#37993">What exactly is a &quot;garbled circuit&quot;?</a></div>
+<div class="line">(mikero, crypto.stackexchange.com)</div>
+<div class="line"><a class="reference external" href="https://crypto.stackexchange.com/questions/37991#37993">https://crypto.stackexchange.com/questions/37991#37993</a></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://youtu.be/9yX4v89m5oo">Memory Hard Functions and Password Hashings</a></div>
+<div class="line">(Jeremiah M. Blocki, CERIAS Symposium)</div>
+<div class="line"><a class="reference external" href="https://youtu.be/9yX4v89m5oo">https://youtu.be/9yX4v89m5oo</a></div>
+</div>
+
+
+
+
+</article>
+
+</section>
+
+<section id="slide_notes">
+
+</section>
+
+  </body>
+</html>

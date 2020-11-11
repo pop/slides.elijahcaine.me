@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>A History of $ man &mdash; Elijah Caine M. Voigt: Slides 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="static/styles.css" type="text/css" />
+    <link rel="stylesheet" href="static/single.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <script type="text/javascript" src="static/common.js"></script>
+    
+    <script type="text/javascript" src="static/slides.js"></script>
+    <script type="text/javascript" src="static/sync.js"></script>
+    <script type="text/javascript" src="static/controller.js"></script>
+    <script type="text/javascript" src="static/init.js"></script>
+    
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Elijah Caine M. Voigt: Slides 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="Holy Wars 2014" href="holy-wars_osu-lug_2014.html" />
+    <link rel="prev" title="A History of GNU/Linux" href="gnu-linux-history_osu-lug_2015.html" /> 
+  </head>
+  <body>
+
+<section
+   id="slide_container"
+   class='slides layout-regular'>
+
+
+  
+<article class="slide level-1" id="a-history-of-man">
+
+<h1>A History of <cite>$ man</cite></h1>
+
+<p>Presented by Elijah Caine</p>
+<blockquote>
+<div><p>What is <cite>$ man</cite>?</p>
+<p>Who made <cite>$ man</cite>?</p>
+<p>Why do we use <cite>$ man</cite>?</p>
+<p>Alternatives.</p>
+</div></blockquote>
+
+
+
+
+</article>
+<article class="slide level-2" id="man">
+
+<h2><cite>$ man</cite></h2>
+
+<div class="figure align-center">
+<img alt="images/history_of_man_sm.png" src="images/history_of_man_sm.png" />
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="what">
+
+<h2>What?</h2>
+
+<p>A man page is a form of online software documentation found on unix and
+unix-like computer operating systems.</p>
+<p>Topic include programs, libraries, system calls, formal standards, and abstract
+concepts.</p>
+<ul class="simple">
+<li>Wikipedia</li>
+</ul>
+<p>man is the system's manual pager. Each page argument given to man is normally
+the name of a program, utility or function.</p>
+<ul class="simple">
+<li><cite>$ man man</cite></li>
+</ul>
+<p>They are usually very dry.</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="sections">
+
+<h2>Sections</h2>
+
+<p>There are generally 8 classes of man pages</p>
+<ol class="arabic simple">
+<li>General Commands</li>
+<li>System Calls</li>
+<li>Library Functions (C libraries in particular)</li>
+<li>Special Files (/dev/) and drivers</li>
+<li>File formats and conversions</li>
+<li>Games and Screensavers</li>
+<li>Miscellanea</li>
+<li>System Administration commands and daemons</li>
+</ol>
+
+
+
+
+</article>
+<article class="slide level-2" id="sections-cont">
+
+<h2>Sections (cont)</h2>
+
+<p><cite>$ man 3 printf</cite> will bring up the printf library manpage, <cite>$ man printf</cite> will
+bring up the printf program manpage.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Most systems have different, modified, or additional sections.</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="layout">
+
+<h2>Layout</h2>
+
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>NAME</dt>
+<dd>What it's called</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SYNOPSIS</dt>
+<dd>What this document is about to tell you</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>DESCRIPTION</dt>
+<dd>What it does and how to do those things</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>EXAMPLES</dt>
+<dd>Useful</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SEE ALSO</dt>
+<dd>Also useful</dd>
+</dl>
+</li>
+</ul>
+
+
+
+
+</article>
+<article class="slide level-2" id="runoff">
+
+<h2>RUNOFF</h2>
+
+<p>Jerome H. Saltzer wrote the RUNOFF utility into the MAD Computer Language for
+MIT's IBM 7094 CTSS Operating System. RUNOFF was used for computer text
+formatting.</p>
+<p>RUNOFF was later ported to many systems as <cite>roff</cite>, <cite>runoff</cite>, <cite>rf</cite>, <cite>compose</cite>,
+<cite>nroff</cite>, <cite>troff</cite>, <cite>ditroff</cite>.</p>
+<p><cite>groff</cite> was the GNU port of <cite>troff</cite> and was also the first Open Source
+implementation of a RUNOFF derivative.</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="something-like-man">
+
+<h2>Something like <cite>man</cite></h2>
+
+<p>Dennis Ritchie and Ken Tompson at Bell Labs November 3, 1971 published the <cite>Unix
+Programmer's Manual</cite> with the first version of UNIX.</p>
+<div class="figure align-center">
+<img alt="images/unix_programmers_manual.jpg" src="images/unix_programmers_manual.jpg" />
+</div>
+
+
+
+
+</article>
+<article class="slide level-2" id="why">
+
+<h2>Why?</h2>
+
+<p>Doug Mcllroy (Dennis and Ken's Manager) insisted they include documentation for
+Unix.</p>
+<p>To this day every (well made) *nix program comes with a man page.</p>
+
+
+
+
+</article>
+<article class="slide level-2" id="post-man-alternatives">
+
+<h2>Post-man: Alternatives</h2>
+
+<ul class="simple">
+<li>GNU <cite>info</cite></li>
+<li><cite>yelp</cite> (html viewer for man pages)</li>
+<li><cite>mandoc</cite> (replacement for <cite>troff</cite>)</li>
+</ul>
+
+
+
+
+</article>
+<article class="slide level-2" id="notes">
+
+<h2>Notes</h2>
+
+<p>Sources include:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Man_page">https://en.wikipedia.org/wiki/Man_page</a></p>
+<p><cite>$ man man</cite></p>
+<p><a class="reference external" href="https://web.archive.org/web/20140327174307/http://manpages.bsd.lv/history.html">https://web.archive.org/web/20140327174307/http://manpages.bsd.lv/history.html</a>
+(because manpages.bsd.lv is broken for some reason)</p>
+
+
+
+
+</article>
+
+</section>
+
+<section id="slide_notes">
+
+</section>
+
+  </body>
+</html>
