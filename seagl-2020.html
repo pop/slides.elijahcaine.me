@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="static/single.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
+    <link rel="stylesheet" href="static/custom.css" type="text/css" />
+    
     
     
     
@@ -53,8 +55,6 @@
 
 <h1>🕹️ Let's Make Games with Rust 🦀</h1>
 
-<p>Hey you.</p>
-<p>This is a draft.</p>
 
 
 
@@ -64,6 +64,11 @@
 
 <h2><code class="docutils literal"><span class="pre">whoami</span></code></h2>
 
+<p>Elijah Voigt</p>
+<p>Python developer working on Enterprise Cloud Management software.
+We're hiring. <a class="reference external" href="https://cloudbolt.io">https://cloudbolt.io</a></p>
+<p>Rust fanboy by hobby. Tinkers with games.</p>
+<p>Lucy Wyman++</p>
 
 
 
@@ -73,15 +78,13 @@
 
 <h2>Making Games: Entities, Components, Systems ⚙️</h2>
 
-
-
-
-
-</article>
-<article class="slide level-3" id="components">
-
-<h3>Components</h3>
-
+<p>Game Loop:</p>
+<ol class="arabic simple">
+<li>Read Input.</li>
+<li>Change State.</li>
+<li>Draw State.</li>
+<li>Repeat ~60/sec.</li>
+</ol>
 
 
 
@@ -91,6 +94,83 @@
 
 <h3>Entities</h3>
 
+<p><em>IDs tied to a set of Components.</em></p>
+<hr class="docutils" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="20%" />
+<col width="22%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Entity ID</th>
+<th class="head">Position</th>
+<th class="head">Hat</th>
+<th class="head">Carnivore</th>
+<th class="head">Herbivore</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>019</td>
+<td>(1, 1, 1)</td>
+<td>&quot;fedora&quot;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>021</td>
+<td>(15, 17 1)</td>
+<td>&quot;baseball&quot;</td>
+<td>carnivore</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>021</td>
+<td>(12, 1, 1)</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>043</td>
+<td>(15, 21 1)</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>herbivore</td>
+</tr>
+<tr class="row-even"><td>044</td>
+<td>(15, 19 1)</td>
+<td>&quot;beanie&quot;</td>
+<td>&nbsp;</td>
+<td>herbivore</td>
+</tr>
+<tr class="row-odd"><td>045</td>
+<td>(15, 22 1)</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>herbivore</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</article>
+<article class="slide level-3" id="components">
+
+<h3>Components</h3>
+
+<p><em>Data used to describe traits of an entity.</em></p>
+<hr class="docutils" />
+<p>Examples:</p>
+<ul class="simple">
+<li>Mass(Int)</li>
+<li>Position(X, Y, Z)</li>
+<li>Velocity(Int)</li>
+<li>Health(Int)</li>
+<li>Hat(HatID)</li>
+<li>Carnivore / Herbivore</li>
+</ul>
 
 
 
@@ -100,6 +180,21 @@
 
 <h3>Systems</h3>
 
+<p><em>Procedures acting on a subset of entities with some components</em></p>
+<hr class="docutils" />
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Iterate over all carnivores</span>
+<span class="c1"># Only use the Carnivore and Position components.</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">carnivore</span><span class="p">,</span> <span class="n">carn_pos</span><span class="p">)</span> <span class="ow">in</span> <span class="n">Entities</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Carnivores</span><span class="p">,</span> <span class="n">Positions</span><span class="p">):</span>
+
+    <span class="c1"># Iterate over all herbivores</span>
+    <span class="c1"># Only use the Herbivore and Position components.</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">herbivore</span><span class="p">,</span> <span class="n">herb_pos</span><span class="p">)</span> <span class="ow">in</span> <span class="n">Entities</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Herbivores</span><span class="p">,</span> <span class="n">Positions</span><span class="p">):</span>
+
+        <span class="c1"># Do some interaction between the entity components</span>
+        <span class="k">if</span> <span class="n">carn_pos</span> <span class="n">is_near</span> <span class="n">herb_pos</span><span class="p">:</span>
+            <span class="n">carnivore</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="n">herbivore</span><span class="p">)</span>
+</pre></div>
+</div>
 
 
 
@@ -109,6 +204,25 @@
 
 <h2>Tools of the Trade: C and C++ ⚒️</h2>
 
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Pros</th>
+<th class="head">Cons</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Fast</td>
+<td><p class="first">Legacy design quirks</p>
+<p>Not writing object oriented!</p>
+<p class="last">Unsafe</p>
+</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -118,6 +232,18 @@
 
 <h2>Rusty Games: Hello Amethyst 💎</h2>
 
+<p>Rust:</p>
+<ul class="simple">
+<li>Zero-cost abstractions</li>
+<li>Memory safe</li>
+<li>Fast</li>
+</ul>
+<p>Amethyst:</p>
+<ul class="simple">
+<li>Includes useful basic features</li>
+<li>Has a well designed API</li>
+<li>Is data driven</li>
+</ul>
 
 
 
@@ -127,6 +253,31 @@
 
 <h3>Step 0: Join the Cargo Cult</h3>
 
+<ol class="arabic simple">
+<li>Install <code class="docutils literal"><span class="pre">rustup</span></code></li>
+<li>Start a blank Rust project:</li>
+</ol>
+<div class="code highlight-default"><div class="highlight"><pre><span></span>$ cargo new seagl-game
+$ cd seagl-game
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Add Amethyst to <code class="docutils literal"><span class="pre">Cargo.toml</span></code>:</li>
+</ol>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">dependencies</span><span class="o">.</span><span class="n">amethyst</span><span class="p">]</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.15.1&quot;</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;vulkan&quot;</span><span class="p">]</span> <span class="c1"># &quot;metal&quot; on MacOS</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Build the project:</li>
+</ol>
+<div class="code highlight-default"><div class="highlight"><pre><span></span>$ cargo build
+...
+Compiling stuff v1.2.3
+...
+</pre></div>
+</div>
 
 
 
@@ -136,6 +287,112 @@
 
 <h3>Step 1: Draw a Window 📐</h3>
 
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">amethyst</span>::<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">assets</span>::<span class="p">{</span><span class="n">AssetStorage</span><span class="p">,</span><span class="w"> </span><span class="n">Loader</span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">core</span>::<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">timing</span>::<span class="n">Time</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">transform</span>::<span class="p">{</span><span class="n">Transform</span><span class="p">,</span><span class="w"> </span><span class="n">TransformBundle</span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">derive</span>::<span class="n">SystemDesc</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">ecs</span>::<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Component</span><span class="p">,</span><span class="w"> </span><span class="n">DenseVecStorage</span><span class="p">,</span><span class="w"> </span><span class="n">Entities</span><span class="p">,</span><span class="w"> </span><span class="n">Join</span><span class="p">,</span><span class="w"> </span><span class="n">Read</span><span class="p">,</span><span class="w"> </span><span class="n">ReadStorage</span><span class="p">,</span><span class="w"> </span><span class="n">System</span><span class="p">,</span><span class="w"> </span><span class="n">SystemData</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">WriteStorage</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">input</span>::<span class="p">{</span><span class="n">InputBundle</span><span class="p">,</span><span class="w"> </span><span class="n">InputHandler</span><span class="p">,</span><span class="w"> </span><span class="n">StringBindings</span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">prelude</span>::<span class="o">*</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">renderer</span>::<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">plugins</span>::<span class="p">{</span><span class="n">RenderFlat2D</span><span class="p">,</span><span class="w"> </span><span class="n">RenderToWindow</span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="n">types</span>::<span class="n">DefaultBackend</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Camera</span><span class="p">,</span><span class="w"> </span><span class="n">ImageFormat</span><span class="p">,</span><span class="w"> </span><span class="n">RenderingBundle</span><span class="p">,</span><span class="w"> </span><span class="n">SpriteRender</span><span class="p">,</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">,</span><span class="w"> </span><span class="n">SpriteSheetFormat</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Texture</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">utils</span>::<span class="n">application_root_dir</span><span class="p">,</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="create-the-game">
+
+<h3>Create the game</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">amethyst</span>::<span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">amethyst</span>::<span class="n">start_logger</span><span class="p">(</span><span class="nb">Default</span>::<span class="n">default</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">app_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">application_root_dir</span><span class="p">()</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">assets_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app_root</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="s">&quot;assets&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">display_config_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app_root</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="s">&quot;config&quot;</span><span class="p">).</span><span class="n">join</span><span class="p">(</span><span class="s">&quot;display.ron&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RenderingBundle</span>::<span class="o">&lt;</span><span class="n">DefaultBackend</span><span class="o">&gt;</span>::<span class="n">new</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">with_plugin</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">RenderToWindow</span>::<span class="n">from_config_path</span><span class="p">(</span><span class="n">display_config_path</span><span class="p">)</span><span class="o">?</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="n">with_clear</span><span class="p">([</span><span class="mf">1.00</span><span class="p">,</span><span class="w"> </span><span class="mf">0.33</span><span class="p">,</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">]),</span><span class="w"></span>
+<span class="w">        </span><span class="p">).</span><span class="n">with_plugin</span><span class="p">(</span><span class="n">RenderFlat2D</span>::<span class="n">default</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">game_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameDataBuilder</span>::<span class="n">default</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">with_bundle</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Application</span>::<span class="n">new</span><span class="p">(</span><span class="n">assets_dir</span><span class="p">,</span><span class="w"> </span><span class="n">SeaglState</span><span class="p">,</span><span class="w"> </span><span class="n">game_data</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">run</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="add-a-state">
+
+<h3>Add a State</h3>
+
+<div class="code highlight-default"><div class="highlight"><pre><span></span>$ cargo run
+...
+error[E0425]: cannot find value `SeaglState` in this scope
+  --&gt; src/main.rs:17:49
+   |
+30 |     let mut game = Application::new(assets_dir, SeaglState, game_data)?;
+   |                                                 ^^^^^^^^^^ not found in this scope
+</pre></div>
+</div>
+<p>Add the Seagl game state:</p>
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nc">SeaglState</span><span class="p">;</span><span class="w"></span>
+<span class="k">impl</span><span class="w"> </span><span class="n">SimpleState</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">SeaglState</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="add-a-display-config">
+
+<h3>Add a Display Config</h3>
+
+<div class="code highlight-default"><div class="highlight"><pre><span></span>Compiling seagl-talk v0.1.0 (/home/pop/seagl-talk)
+ Finished dev [unoptimized + debuginfo] target(s) in 24.81s
+  Running `target/debug/seagl-talk`
+  Error: { ... &quot;No such file or directory&quot; ... }
+</pre></div>
+</div>
+<p>Add the display config:</p>
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="c1">// config/display.ron</span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">title</span>: <span class="s">&quot;SeaGL!&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dimensions</span>: <span class="nc">Some</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">)),</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="and-here-s-what-we-got">
+
+<h3>And here's what we got</h3>
+
+<a class="reference internal image-reference" href="images/blank-window.png"><img alt="A very orange window..." class="align-center" src="images/blank-window.png" style="width: 60%;" /></a>
 
 
 
@@ -145,6 +402,159 @@
 
 <h3>Step 2: Draw a SeaGL 🕊️</h3>
 
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="cp">#[derive(Default)]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Seagl</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">impl</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Seagl</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nc">Storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DenseVecStorage</span><span class="o">&lt;</span><span class="bp">Self</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="create-the-seagl-entity">
+
+<h3>Create the Seagl entity</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="k">impl</span><span class="w"> </span><span class="n">SimpleState</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">SeaglState</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">on_start</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">data</span>: <span class="nc">StateData</span><span class="o">&lt;</span><span class="n">GameData</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">world</span><span class="p">.</span><span class="n">register</span>::<span class="o">&lt;</span><span class="n">Seagl</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Transform</span>::<span class="n">default</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">set_translation_xyz</span><span class="p">(</span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">seagl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Seagl</span>::<span class="n">default</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">world</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">create_entity</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">seagl</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">build</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="give-the-seagl-a-sprite">
+
+<h3>Give the Seagl a Sprite</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">sprite_sheet_handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">world</span><span class="p">.</span><span class="n">read_resource</span>::<span class="o">&lt;</span><span class="n">Loader</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">texture_storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">world</span><span class="p">.</span><span class="n">read_resource</span>::<span class="o">&lt;</span><span class="n">AssetStorage</span><span class="o">&lt;</span><span class="n">Texture</span><span class="o">&gt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">texture_handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;texture/spritesheet.png&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">ImageFormat</span>::<span class="n">default</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="o">&amp;</span><span class="n">texture_storage</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sprite_sheet_store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">world</span><span class="p">.</span><span class="n">read_resource</span>::<span class="o">&lt;</span><span class="n">AssetStorage</span><span class="o">&lt;</span><span class="n">SpriteSheet</span><span class="o">&gt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">loader</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;texture/spritesheet.ron&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">SpriteSheetFormat</span><span class="p">(</span><span class="n">texture_handle</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="o">&amp;</span><span class="n">sprite_sheet_store</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="id1">
+
+<h3>Give the Seagl a Sprite</h3>
+
+<div class="highlight-diff"><div class="highlight"><pre><span></span><span class="gi">++ main.rs</span>
+<span class="gu">@@ impl SimpleState for SeaglState</span>
+<span class="gu">@@ fn on_start(...)</span>
+  let mut transform = Transform::default();
+  transform.set_translation_xyz(50.0, 50.0, 0.0);
+<span class="gi">+ let sprite = SpriteRender::new(sprite_sheet_handle.clone(), 0);</span>
+  let seagl = Seagl::default();
+  data.world
+      .create_entity()
+      .with(seagl)
+<span class="gi">+     .with(sprite)</span>
+      .with(transform)
+      .build();
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="create-the-spritesheet">
+
+<h3>Create the Spritesheet</h3>
+
+<a class="reference internal image-reference" href="images/spritesheet.png"><img alt="Seagl and Burger. 32x16. Pixel on LCD." src="images/spritesheet.png" style="width: 100%;" /></a>
+
+
+
+
+</article>
+<article class="slide level-3" id="id2">
+
+<h3>Create the Spritesheet</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="c1">// assets/texture/spritesheet.ron</span>
+<span class="n">List</span><span class="p">((</span><span class="w"></span>
+<span class="w">    </span><span class="n">texture_width</span>: <span class="mi">32</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">texture_height</span>: <span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">sprites</span>: <span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="w"> </span><span class="c1">// Seagl</span>
+<span class="w">            </span><span class="n">x</span>: <span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">y</span>: <span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">width</span>: <span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">height</span>: <span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="w"> </span><span class="c1">// Burger</span>
+<span class="w">            </span><span class="n">x</span>: <span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">y</span>: <span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">width</span>: <span class="mi">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">height</span>: <span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="create-a-camera">
+
+<h3>Create a Camera</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Transform</span>::<span class="n">default</span><span class="p">();</span><span class="w"></span>
+<span class="n">transform</span><span class="p">.</span><span class="n">set_translation_xyz</span><span class="p">(</span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="n">data</span><span class="p">.</span><span class="n">world</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">create_entity</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">Camera</span>::<span class="n">standard_2d</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">build</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="tada">
+
+<h3>Tada!</h3>
+
+<a class="reference internal image-reference" href="images/window-with-seagl.png"><img alt="That's a nice looking Seagl there..." class="align-center" src="images/window-with-seagl.png" style="width: 60%;" /></a>
 
 
 
@@ -154,6 +564,158 @@
 
 <h3>Step 3: Move Around 🏇</h3>
 
+<div class="highlight-text"><div class="highlight"><pre><span></span>for every seagl that can move:
+    If the user input is &quot;move horizontal&quot;:
+        Move the seagl horizontally
+    If the user input is &quot;move vertical&quot;:
+        Move the seagl vertically
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="create-the-move-system">
+
+<h3>Create the Move System</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">derive</span><span class="p">(</span><span class="n">SystemDesc</span><span class="p">)]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">MoveSystem</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">impl</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="o">&gt;</span><span class="w"> </span><span class="n">System</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="o">&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MoveSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nc">SystemData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">WriteStorage</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="p">,</span><span class="w"> </span><span class="n">Transform</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">ReadStorage</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="p">,</span><span class="w"> </span><span class="n">Seagl</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Read</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="p">,</span><span class="w"> </span><span class="n">Time</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Read</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="p">,</span><span class="w"> </span><span class="n">InputHandler</span><span class="o">&lt;</span><span class="n">StringBindings</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,(</span><span class="k">mut</span><span class="w"> </span><span class="n">transforms</span><span class="p">,</span><span class="w"> </span><span class="n">seagls</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>: <span class="nc">Self</span>::<span class="n">SystemData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="o">..</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="implement-the-move-system">
+
+<h3>Implement the Move System</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">transforms</span><span class="p">,</span><span class="w"> </span><span class="n">seagls</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>: <span class="nc">Self</span>::<span class="n">SystemData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">speed</span>: <span class="kt">f32</span> <span class="o">=</span><span class="w"> </span><span class="mf">50.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">_seagl</span><span class="p">,</span><span class="w"> </span><span class="n">transform</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">seagls</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">transforms</span><span class="p">).</span><span class="n">join</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">horizontal</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">axis_value</span><span class="p">(</span><span class="s">&quot;horizontal&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">prepend_translation_x</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">horizontal</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="n">delta_seconds</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">speed</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="kt">f32</span><span class="w"></span>
+<span class="w">            </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">};</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">vertical</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">axis_value</span><span class="p">(</span><span class="s">&quot;vertical&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">prepend_translation_y</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">vertical</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="n">delta_seconds</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">f32</span><span class="w"></span>
+<span class="w">            </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="input-mapping-config">
+
+<h3>Input Mapping Config</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="c1">// config/bindings.ron</span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">axes</span>: <span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;horizontal&quot;</span>: <span class="nc">Emulated</span><span class="p">(</span><span class="n">pos</span>: <span class="nc">Key</span><span class="p">(</span><span class="n">Right</span><span class="p">),</span><span class="w"> </span><span class="n">neg</span>: <span class="nc">Key</span><span class="p">(</span><span class="n">Left</span><span class="p">)),</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;vertical&quot;</span>: <span class="nc">Emulated</span><span class="p">(</span><span class="n">pos</span>: <span class="nc">Key</span><span class="p">(</span><span class="n">Up</span><span class="p">),</span><span class="w"> </span><span class="n">neg</span>: <span class="nc">Key</span><span class="p">(</span><span class="n">Down</span><span class="p">)),</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">actions</span>: <span class="p">{},</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="add-our-system-to-the-runtime">
+
+<h3>Add our system to the runtime</h3>
+
+<div class="highlight-diff"><div class="highlight"><pre><span></span><span class="gi">+++ main.rs</span>
+<span class="gu">@@ fn main() -&gt; amethyst::Result&lt;()&gt;</span>
+     )
+     .with_plugin(RenderFlat2D::default());
+
+<span class="gi">+    let bindings_path = app_root.join(&quot;config&quot;).join(&quot;bindings.ron&quot;);</span>
+<span class="gi">+    let inputs = InputBundle::&lt;StringBindings&gt;::new().with_bindings_from_file(bindings_path)?;</span>
+<span class="gi">+</span>
+     let game_data = GameDataBuilder::default()
+         .with_bundle(transform)?
+         .with_bundle(renderer)?;
+<span class="gi">+        .with_bundle(inputs)?</span>
+<span class="gi">+        .with(MoveSystem, &quot;move_system&quot;, &amp;[&quot;input_system&quot;]);</span>
+
+     let mut game = Application::new(assets_dir, SeaglState, game_data)?;
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="it-moves">
+
+<h3>It moves!</h3>
+
+<img alt="It moves!" class="align-center" src="images/SeaGL-move.gif" />
+
+
+
+
+</article>
+<article class="slide level-3" id="look-where-you-re-going-seagl">
+
+<h3>Look where you're going Seagl!</h3>
+
+<div class="highlight-diff"><div class="highlight"><pre><span></span><span class="gh">diff --git a/src/main.rs b/src/main.rs</span>
+<span class="gu">@@ impl&lt;&#39;s&gt; System&lt;&#39;s&gt; for MoveSystem</span>
+<span class="gu">@@ run(...)</span>
+  if let Some(vertical) = input.axis_value(&quot;vertical&quot;) {
+      transform.prepend_translation_x(
+        horizontal * time.delta_seconds() * speed  as f32
+      );
+<span class="gi">+     if horizontal &gt; 0.0 {</span>
+<span class="gi">+       transform.set_rotation_y_axis(std::f32::consts::PI);</span>
+<span class="gi">+     }</span>
+<span class="gi">+     if horizontal &lt; 0.0 {</span>
+<span class="gi">+       transform.set_rotation_y_axis(0.0);</span>
+<span class="gi">+     }</span>
+<span class="gi">+</span>
+  };
+  if let Some(vertical) = input.axis_value(&quot;vertical&quot;) {
+      transform.prepend_translation_y(
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="it-looks">
+
+<h3>It looks!</h3>
+
+<img alt="It looks!" class="align-center" src="images/SeaGL-move-look.gif" />
 
 
 
@@ -163,6 +725,125 @@
 
 <h3>Step 4: Eat some food! 🍔</h3>
 
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="cp">#[derive(Default)]</span><span class="w"></span>
+<span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Food</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">impl</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Food</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nc">Storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DenseVecStorage</span><span class="o">&lt;</span><span class="bp">Self</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="spawn-a-burger">
+
+<h3>Spawn a burger</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">burger_sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteRender</span>::<span class="n">new</span><span class="p">(</span><span class="n">sprite_sheet_handle</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Transform</span>::<span class="n">default</span><span class="p">();</span><span class="w"></span>
+<span class="n">transform</span><span class="p">.</span><span class="n">set_translation_xyz</span><span class="p">(</span><span class="mf">75.0</span><span class="p">,</span><span class="w"> </span><span class="mf">75.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="n">data</span><span class="p">.</span><span class="n">world</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">create_entity</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">Food</span>::<span class="n">default</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">burger_sprite</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">build</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="think-about-eating-burgers">
+
+<h3>Think about eating burgers</h3>
+
+<div class="highlight-text"><div class="highlight"><pre><span></span>For each seagl with a location:
+    For each Food with a location:
+        If the Seagl overlaps with the Food:
+            Destory that food
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="add-the-eat-system">
+
+<h3>Add the Eat System</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">EatSystem</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">impl</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="o">&gt;</span><span class="w"> </span><span class="n">System</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="o">&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">EatSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nc">SystemData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">ReadStorage</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="p">,</span><span class="w"> </span><span class="n">Transform</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">ReadStorage</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="p">,</span><span class="w"> </span><span class="n">Seagl</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">WriteStorage</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="p">,</span><span class="w"> </span><span class="n">Food</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">Entities</span><span class="o">&lt;&#39;</span><span class="na">s</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span><span class="w"> </span><span class="n">seagls</span><span class="p">,</span><span class="w"> </span><span class="n">foods</span><span class="p">,</span><span class="w"> </span><span class="n">entities</span><span class="p">)</span>: <span class="nc">Self</span>::<span class="n">SystemData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="o">..</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="implement-the-eat-system">
+
+<h3>Implement the Eat System</h3>
+
+<div class="highlight-rust"><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span><span class="w"> </span><span class="n">seagls</span><span class="p">,</span><span class="w"> </span><span class="n">foods</span><span class="p">,</span><span class="w"> </span><span class="n">entities</span><span class="p">)</span>: <span class="nc">Self</span>::<span class="n">SystemData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">_seagl</span><span class="p">,</span><span class="w"> </span><span class="n">seagl_pos</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">seagls</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">transforms</span><span class="p">).</span><span class="n">join</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">_food</span><span class="p">,</span><span class="w"> </span><span class="n">food_pos</span><span class="p">,</span><span class="w"> </span><span class="n">food</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">foods</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">transforms</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">entities</span><span class="p">).</span><span class="n">join</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">intersect</span><span class="p">(</span><span class="n">seagl_pos</span><span class="p">,</span><span class="w"> </span><span class="n">food_pos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">entities</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">food</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="add-the-eat-system-to-the-runtime">
+
+<h3>Add the Eat System to the runtime</h3>
+
+<div class="highlight-diff"><div class="highlight"><pre><span></span><span class="gi">+++ main.rs</span>
+<span class="gu">@@ fn main() -&gt; amethyst::Result&lt;()&gt;</span>
+     let game_data = GameDataBuilder::default()
+         .with_bundle(transform)?
+         .with_bundle(renderer)?;
+         .with_bundle(inputs)?
+         .with(MoveSystem, &quot;move_system&quot;, &amp;[&quot;input_system&quot;])
+<span class="gi">+        .with(EatSystem, &quot;eat_system&quot;, &amp;[&quot;move_system&quot;]);</span>
+</pre></div>
+</div>
+
+
+
+
+</article>
+<article class="slide level-3" id="it-eats">
+
+<h3>It eats!</h3>
+
+<img alt="It eats!" class="align-center" src="images/SeaGL-move-look-burger.gif" />
 
 
 
@@ -172,6 +853,12 @@
 
 <h3>Links</h3>
 
+<p>Code for this talk <a class="reference external" href="https://github.com/pop/lets-make-games-with-rust">https://github.com/pop/lets-make-games-with-rust</a>.</p>
+<p>Blogpost for this talk <a class="reference external" href="https://elijahcaine.me/seagl-2020-lets-build-a-game-with-rust/">https://elijahcaine.me/seagl-2020-lets-build-a-game-with-rust/</a></p>
+<p>Rust Language: <a class="reference external" href="https://www.rust-lang.org/">https://www.rust-lang.org/</a></p>
+<p>Are We Game Yet?: <a class="reference external" href="https://arewegameyet.rs/">https://arewegameyet.rs/</a></p>
+<p>Amethyst Game Engine website: <a class="reference external" href="https://amethyst.rs/">https://amethyst.rs/</a></p>
+<p>Game Programming Patterns is an awesome book with a free &amp; legal copy online: <a class="reference external" href="https://gameprogrammingpatterns.com/">https://gameprogrammingpatterns.com/</a></p>
 
 
 
