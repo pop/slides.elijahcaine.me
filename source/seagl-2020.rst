@@ -175,18 +175,24 @@ Create the game
 
     fn main() -> amethyst::Result<()> {
         amethyst::start_logger(Default::default());
+
         let app_root = application_root_dir()?;
         let assets_dir = app_root.join("assets");
         let display_config_path = app_root.join("config").join("display.ron");
+
         let renderer = RenderingBundle::<DefaultBackend>::new()
             .with_plugin(
                 RenderToWindow::from_config_path(display_config_path)?
                     .with_clear([1.00, 0.33, 0.00, 1.0]),
             ).with_plugin(RenderFlat2D::default());
+
         let game_data = GameDataBuilder::default()
             .with_bundle(renderer)?;
+
         let mut game = Application::new(assets_dir, SeaglState, game_data)?;
+
         game.run();
+
         Ok(())
     }
 
@@ -409,7 +415,6 @@ Implement the Move System
                 transform.prepend_translation_x(
                     horizontal * time.delta_seconds() * speed  as f32
                 );
-
             };
             if let Some(vertical) = input.axis_value("vertical") {
                 transform.prepend_translation_y(
@@ -448,7 +453,7 @@ Add our system to the runtime
     +
          let game_data = GameDataBuilder::default()
              .with_bundle(transform)?
-             .with_bundle(renderer)?;
+             .with_bundle(renderer)?
     +        .with_bundle(inputs)?
     +        .with(MoveSystem, "move_system", &["input_system"]);
 
@@ -542,7 +547,7 @@ Add the Eat System
         type SystemData = (
             ReadStorage<'s, Transform>,
             ReadStorage<'s, Seagl>,
-            WriteStorage<'s, Food>,
+            ReadStorage<'s, Food>,
             Entities<'s>,
         );
 
