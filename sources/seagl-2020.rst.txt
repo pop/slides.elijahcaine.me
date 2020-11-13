@@ -7,12 +7,12 @@
 ``whoami``
 ----------
 
-Elijah Voigt
+Elijah Voigt | ``pop`` on IRC and GitHub | ``@pastywhitenoise`` on Twitter.
 
 Python developer working on Enterprise Cloud Management software.
 We're hiring. https://cloudbolt.io
 
-Rust fanboy by hobby. Tinkers with games.
+Rust hobbiest. Games tinkerer.
 
 Lucy Wyman++
 
